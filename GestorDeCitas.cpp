@@ -2,58 +2,94 @@
 #include <string>
 
 using namespace std;
-// prueba
-int main() {
 
+int main() {
     int opcion = 0;
     int opcionEspecialidad = 0;
+    int opcionSexoPaciente = 0;
+    int opcionSexoMedico = 0;
 
-
+    string identidadPaciente = "";
     string nombrePaciente = "";
+    string sexoPaciente = "";
+    string telefonoPaciente = "";
     int edadPaciente = 0;
     bool pacienteRegistrado = false;
 
-
+    string identidadMedico = "";
     string nombreMedico = "";
+    string sexoMedico = "";
     string especialidad = "";
     bool medicoRegistrado = false;
 
     int Edad_minima = 0;
     int Edad_maxima = 100;
 
-
 MENU_PRINCIPAL:
     system("cls");
-    cout << "\t--- CLINICAS MEDICAS TEGUCIGALPA ---" << endl;
+    cout << "--- CLINICAS MEDICAS TEGUCIGALPA ---" << endl;
+    cout << "========================================" << endl;
+    cout << "REGLAS DE ATENCION DE LA CLINICA:" << endl;
+    cout << "1. Edad Permitida: Entre 0 y 100 anios." << endl;
+    cout << "2. Pediatria: Solo menores de 18 anios (0 a 17 anios)." << endl;
+    cout << "3. Prioridad: Embarazadas, Tercera Edad (60+) e Urgencias." << endl;
+    cout << "4. Flujo Obligatorio: Registrar paciente antes del medico y la cita." << endl;
     cout << "========================================" << endl;
     cout << "1. Registrar Paciente" << endl;
     cout << "2. Registrar Medico y Especialidad" << endl;
     cout << "3. Asignar Cita" << endl;
-    cout << "4. Salir" << endl;
+    cout << "4. Ver Reglas de Atencion" << endl;
+    cout << "5. Salir" << endl;
     cout << "========================================" << endl;
     cout << "Ingrese una opcion: ";
     cin >> opcion;
 
-
     switch (opcion) {
     case 1:
         system("cls");
-        cout << "\t--- REGISTRO DE PACIENTE ---" << endl;
+        cout << "--- REGISTRO DE PACIENTE ---" << endl;
         cin.ignore();
 
         cout << "Nombre completo: ";
         getline(cin, nombrePaciente);
 
+        cout << "Numero de Identidad del Paciente: ";
+        cin >> identidadPaciente;
+
         cout << "Edad: ";
         cin >> edadPaciente;
 
         if (edadPaciente >= Edad_minima && edadPaciente <= Edad_maxima) {
+            bool sexoValido = false;
+            while (sexoValido == false) {
+                cout << "Seleccione el Sexo del Paciente:" << endl;
+                cout << "1. Masculino" << endl;
+                cout << "2. Femenino" << endl;
+                cout << "Ingrese una opcion: ";
+                cin >> opcionSexoPaciente;
+
+                if (opcionSexoPaciente == 1) {
+                    sexoPaciente = "Masculino";
+                    sexoValido = true;
+                }
+                else if (opcionSexoPaciente == 2) {
+                    sexoPaciente = "Femenino";
+                    sexoValido = true;
+                }
+                else {
+                    cout << "[Error] Opcion invalida. Intente de nuevo." << endl;
+                }
+            }
+
+            cout << "Numero de telefono: ";
+            cin >> telefonoPaciente;
+
             pacienteRegistrado = true;
-            cout << "\n Paciente registrado correctamente." << endl;
+            cout << "Paciente registrado correctamente." << endl;
         }
         else {
             pacienteRegistrado = false;
-            cout << "\n Edad incorrecta" << endl;
+            cout << "Edad incorrecta" << endl;
         }
 
         system("pause");
@@ -63,11 +99,11 @@ MENU_PRINCIPAL:
     case 2:
     {
         system("cls");
-        cout << "\t--- REGISTRO DE MEDICO Y ESPECIALIDAD ---" << endl;
+        cout << "--- REGISTRO DE MEDICO Y ESPECIALIDAD ---" << endl;
         cin.ignore();
 
         if (pacienteRegistrado == false) {
-            cout << "\n Debe registrar los datos del paciente." << endl;
+            cout << "Debe registrar los datos del paciente primero." << endl;
             system("pause");
             goto MENU_PRINCIPAL;
         }
@@ -75,14 +111,39 @@ MENU_PRINCIPAL:
         cout << "Nombre del Medico: ";
         getline(cin, nombreMedico);
 
+        cout << "Numero de Identidad del Medico: ";
+        cin >> identidadMedico;
+
+        bool sexoMedicoValido = false;
+        while (sexoMedicoValido == false) {
+            cout << "Seleccione el Sexo del Medico:" << endl;
+            cout << "1. Masculino" << endl;
+            cout << "2. Femenino" << endl;
+            cout << "Ingrese una opcion: ";
+            cin >> opcionSexoMedico;
+
+            if (opcionSexoMedico == 1) {
+                sexoMedico = "Masculino";
+                sexoMedicoValido = true;
+            }
+            else if (opcionSexoMedico == 2) {
+                sexoMedico = "Femenino";
+                sexoMedicoValido = true;
+            }
+            else {
+                cout << "[Error] Opcion invalida. Intente de nuevo." << endl;
+            }
+        }
+
         bool especialidadValida = false;
 
         while (especialidadValida == false) {
-            cout << "\n Seleccione la Especialidad:" << endl;
+            cout << "Seleccione la Especialidad:" << endl;
             cout << "1. Medicina General" << endl;
-            cout << "2. Pediatria " << endl;
+            cout << "2. Pediatria" << endl;
             cout << "3. Cardiologia" << endl;
             cout << "4. Ortopedia" << endl;
+            cout << "5. Ginecologia" << endl;
             cout << "Ingrese una opcion: ";
             cin >> opcionEspecialidad;
 
@@ -98,7 +159,7 @@ MENU_PRINCIPAL:
                     especialidadValida = true;
                 }
                 else {
-                    cout << "\n El paciente tiene " << edadPaciente << " anios. Elija otra opcion.\n" << endl;
+                    cout << "El paciente tiene " << edadPaciente << " anios. Pediatria es solo para menores de 18. Elija otra opcion." << endl;
                 }
             }
             else if (opcionEspecialidad == 3) {
@@ -111,29 +172,43 @@ MENU_PRINCIPAL:
                 medicoRegistrado = true;
                 especialidadValida = true;
             }
+            else if (opcionEspecialidad == 5) {
+                if (sexoPaciente == "Femenino") {
+                    especialidad = "Ginecologia";
+                    medicoRegistrado = true;
+                    especialidadValida = true;
+                }
+                else {
+                    cout << "Ginecologia solo aplica para pacientes de sexo femenino. Elija otra opcion." << endl;
+                }
+            }
             else {
-                cout << "\n Opcion incorrecta.\n" << endl;
+                cout << "Opcion incorrecta." << endl;
             }
         }
 
-        cout << "\n Medico registrado correctamente en " << especialidad << "." << endl;
+        cout << "Medico registrado correctamente en " << especialidad << "." << endl;
         system("pause");
         goto MENU_PRINCIPAL;
         break;
     }
     case 3:
         system("cls");
-        cout << "\t--- ASIGNACION DE CITA ---" << endl;
+        cout << "--- ASIGNACION DE CITA ---" << endl;
 
         if (pacienteRegistrado == true && medicoRegistrado == true) {
-            cout << "Cita asignada exitosamente:\n" << endl;
-            cout << "PACIENTE: " << nombrePaciente << " (Edad: " << edadPaciente << ")" << endl;
-            cout << "MEDICO ASIGNADO: Dr. " << nombreMedico << " (" << especialidad << ")" << endl;
+            cout << "Cita asignada exitosamente!" << endl;
+            
+            cout << "DETALLE DE TURNOS ACTIVOS:" << endl;
+            cout << "--------------------------------------------------------------------------------------------------------" << endl;
+            cout << " Turno | Identidad Paciente | Paciente           | Sexo P.   | Telefono   | Medico           | Especialidad     | Estado" << endl;
+            cout << "--------------------------------------------------------------------------------------------------------" << endl;
+            cout << " #1    | " << identidadPaciente << "     | " << nombrePaciente << " | " << sexoPaciente << " | " << telefonoPaciente << " | Dr(a). " << nombreMedico << " | " << especialidad << " | Pendiente" << endl;
+            cout << "--------------------------------------------------------------------------------------------------------" << endl;
         }
         else {
-            cout << " Complete los datos necesarios para asignar la cita." << endl;
+            cout << "Complete los datos necesarios para asignar la cita." << endl;
 
-            // Uso del operador logico NOT (!)
             if (!pacienteRegistrado) {
                 cout << "- El paciente no esta registrado o su edad es invalida." << endl;
             }
@@ -148,11 +223,23 @@ MENU_PRINCIPAL:
 
     case 4:
         system("cls");
+        cout << "--- REGLAS DE ATENCION DE LA CLINICA ---" << endl;
+        cout << "1. Edad Permitida: Entre 0 y 100 anios." << endl;
+        cout << "2. Pediatria: Solo para menores de 18 anios (0 a 17 anios)." << endl;
+        cout << "3. Prioridad de Atencion: Embarazadas, Tercera Edad (60+) e Urgencias." << endl;
+        cout << "4. Flujo Obligatorio: Se debe registrar el paciente antes del medico y la cita." << endl;
+        cout << "----------------------------------------" << endl;
+        system("pause");
+        goto MENU_PRINCIPAL;
+        break;
+
+    case 5:
+        system("cls");
         cout << "Gracias, Feliz Dia!" << endl;
         break;
 
     default:
-        cout << "\n Opcion invalida. Intente de nuevo." << endl;
+        cout << "Opcion invalida. Intente de nuevo." << endl;
         system("pause");
         goto MENU_PRINCIPAL;
         break;
