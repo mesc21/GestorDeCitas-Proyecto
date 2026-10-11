@@ -38,8 +38,7 @@ MENU_PRINCIPAL:
     cout << "1. Registrar Paciente" << endl;
     cout << "2. Registrar Medico y Especialidad" << endl;
     cout << "3. Asignar Cita" << endl;
-    cout << "4. Ver Reglas de Atencion" << endl;
-    cout << "5. Salir" << endl;
+    cout << "4. Salir" << endl;
     cout << "========================================" << endl;
     cout << "Ingrese una opcion: ";
     cin >> opcion;
@@ -222,18 +221,6 @@ MENU_PRINCIPAL:
         break;
 
     case 4:
-        system("cls");
-        cout << "--- REGLAS DE ATENCION DE LA CLINICA ---" << endl;
-        cout << "1. Edad Permitida: Entre 0 y 100 anios." << endl;
-        cout << "2. Pediatria: Solo para menores de 18 anios (0 a 17 anios)." << endl;
-        cout << "3. Prioridad de Atencion: Embarazadas, Tercera Edad (60+) e Urgencias." << endl;
-        cout << "4. Flujo Obligatorio: Se debe registrar el paciente antes del medico y la cita." << endl;
-        cout << "----------------------------------------" << endl;
-        system("pause");
-        goto MENU_PRINCIPAL;
-        break;
-
-    case 5:
         system("cls");
         cout << "Gracias, Feliz Dia!" << endl;
         break;
