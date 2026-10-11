@@ -197,7 +197,7 @@ MENU_PRINCIPAL:
 
         if (pacienteRegistrado == true && medicoRegistrado == true) {
             cout << "Cita asignada exitosamente!" << endl;
-            
+
             cout << "DETALLE DE TURNOS ACTIVOS:" << endl;
             cout << "--------------------------------------------------------------------------------------------------------" << endl;
             cout << " Turno | Identidad Paciente | Paciente           | Sexo P.   | Telefono   | Medico           | Especialidad     | Estado" << endl;
