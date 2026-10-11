@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="GestorDeCitas-Proyecto.vcxproj" Id="0127739b-e92c-499b-970b-4f6bce9fd842" />
+</Solution>
