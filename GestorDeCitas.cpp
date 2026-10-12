@@ -16,7 +16,6 @@ int main() {
     int edadPaciente = 0;
     bool pacienteRegistrado = false;
 
-    string identidadMedico = "";
     string nombreMedico = "";
     string sexoMedico = "";
     string especialidad = "";
@@ -30,10 +29,10 @@ MENU_PRINCIPAL:
     cout << "--- CLINICAS MEDICAS TEGUCIGALPA ---" << endl;
     cout << "========================================" << endl;
     cout << "REGLAS DE ATENCION DE LA CLINICA:" << endl;
-    cout << "1. Edad Permitida: Entre 0 y 100 anios." << endl;
-    cout << "2. Pediatria: Solo menores de 18 anios (0 a 17 anios)." << endl;
-    cout << "3. Prioridad: Embarazadas, Tercera Edad (60+) e Urgencias." << endl;
-    cout << "4. Flujo Obligatorio: Registrar paciente antes del medico y la cita." << endl;
+    cout << "-. Edad Permitida: Entre 0 y 100 anios." << endl;
+    cout << "-. Pediatria: " << endl;
+    cout << "-. Prioridad: Embarazadas, Tercera Edad (60+) e Urgencias." << endl;
+    cout << ". Flujo Obligatorio: Registrar paciente antes del medico y la cita." << endl;
     cout << "========================================" << endl;
     cout << "1. Registrar Paciente" << endl;
     cout << "2. Registrar Medico y Especialidad" << endl;
@@ -76,7 +75,7 @@ MENU_PRINCIPAL:
                     sexoValido = true;
                 }
                 else {
-                    cout << "[Error] Opcion invalida. Intente de nuevo." << endl;
+                    cout << " Dato incorrecto." << endl;
                 }
             }
 
@@ -110,8 +109,6 @@ MENU_PRINCIPAL:
         cout << "Nombre del Medico: ";
         getline(cin, nombreMedico);
 
-        cout << "Numero de Identidad del Medico: ";
-        cin >> identidadMedico;
 
         bool sexoMedicoValido = false;
         while (sexoMedicoValido == false) {
@@ -130,7 +127,7 @@ MENU_PRINCIPAL:
                 sexoMedicoValido = true;
             }
             else {
-                cout << "[Error] Opcion invalida. Intente de nuevo." << endl;
+                cout << " Opcion incorrecta. " << endl;
             }
         }
 
