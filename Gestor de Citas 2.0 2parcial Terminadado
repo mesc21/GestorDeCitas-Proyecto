@@ -289,6 +289,7 @@ MENU_PRINCIPAL:
             goto MENU_PRINCIPAL;
         }
 
+        cout << "Paciente: " << pacientes[posicion].nombre << endl;
         especialidadValida = false;
         while (especialidadValida == false) {
             cout << "Seleccione la Especialidad:" << endl;
@@ -551,6 +552,7 @@ MENU_PRINCIPAL:
         pacientes[posicion].estado = 3;
         totalCancelados++;
 
+        cout << "Paciente: " << pacientes[posicion].nombre << endl;
         cout << "Cita del turno #" << pacientes[posicion].turno << " cancelada correctamente." << endl;
 
         system("pause");
@@ -585,7 +587,8 @@ MENU_PRINCIPAL:
             goto MENU_PRINCIPAL;
         }
 
-        cout << "Especialidad actual: " << nombreEspecialidad[pacientes[posicion].especialidad] << endl;
+        cout << "Consulta actual: " << nombreEspecialidad[pacientes[posicion].especialidad] << endl;
+        cout << "Paciente: " << pacientes[posicion].nombre << endl;
 
         especialidadValida = false;
         while (especialidadValida == false) {
@@ -723,3 +726,4 @@ MENU_PRINCIPAL:
 
     return 0;
 }
+
